@@ -28,10 +28,19 @@ addPhraseToDisplay() {
     });
 }
 
-// checkLetter(letter){
-//     return this.phrase.includes(letter);
-// };
+checkLetter(letter){
+    return this.phrase.includes(letter);
+};
 
-// showMatchedLetter(){};
+showMatchedLetter(letter){
+    const letter = document.querySelectorAll('.letter');
+    if (this.checkLetter(letter)) {
+        for (let i = 0; i < letter.length; i++){
+            letter[i].classList.remove('hide');
+            letter[i].classList.add('show')
+        }
+    }
+
+}
 
 };

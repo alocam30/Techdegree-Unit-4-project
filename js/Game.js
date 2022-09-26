@@ -29,10 +29,48 @@ getRandomPhrase(phrases) {
 * Begins game by selecting a random phrase and displaying it to user
 */
 startGame() {
-    const hideOverlay = document.getElementById('overlay');
-    hideOverlay.style.display = 'none';
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
     this.activePhrase = this.getRandomPhrase();  
     this.activePhrase.addPhraseToDisplay();  
     };  
+
+/**
+* Checks for winning move
+* @return {boolean} True if game has been won, false if game wasn't
+won
+*/
+checkForWin(){
+    let letter = document.querySelectorAll('.letter');
+    let letterArr = Array.from(letter);
+    return letterArr.every((letter) => letter.matches(".hide")); 
+};
+
+/**
+* Increases the value of the missed property
+* Removes a life from the scoreboard
+* Checks if player has remaining lives and ends game if player is out
+*/
+removeLife() {
+    
+    
+};
+
+/**
+* Displays game over message
+* @param {boolean} gameWon - Whether or not the user won the game
+*/
+gameOver(gameWon){
+    hideOverlay.style.display = '';
+    if (this.missed === 5){
+        overlay.append("Sorry, you lost");
+        overlay.classList.remove('start');
+        overlay.classList.add('lose')
+    } else {
+        overlay.append("Yay, you won!");
+        overlay.classList.remove('start');
+        overlay.classList.add('win');
+    }
+};
 
 }
