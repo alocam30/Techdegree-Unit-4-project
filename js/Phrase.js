@@ -33,14 +33,17 @@ checkLetter(letter){
 };
 
 showMatchedLetter(letter){
-    const letter = document.querySelectorAll('.letter');
+    const matchLetter = document.querySelectorAll('.letter');
     if (this.checkLetter(letter)) {
         for (let i = 0; i < letter.length; i++){
-            letter[i].classList.remove('hide');
-            letter[i].classList.add('show')
+            if(matchLetter[i].classList.contains(letter)){
+            machLetter[i].classList.remove('hide');
+            matchLetter[i].classList.add('show')
+            }
         }
     }
+ }
 
-}
+ 
 
 };

@@ -35,42 +35,66 @@ startGame() {
     this.activePhrase.addPhraseToDisplay();  
     };  
 
-/**
-* Checks for winning move
-* @return {boolean} True if game has been won, false if game wasn't
-won
-*/
-checkForWin(){
-    let letter = document.querySelectorAll('.letter');
-    let letterArr = Array.from(letter);
-    return letterArr.every((letter) => letter.matches(".hide")); 
-};
 
-/**
-* Increases the value of the missed property
-* Removes a life from the scoreboard
-* Checks if player has remaining lives and ends game if player is out
-*/
-removeLife() {
+
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't
+    won
+    */
+    checkForWin(){
+        let hide = document.querySelectorAll('.hide');
+        let win = true;
+        let emptyBoxes = document.querySelectorAll('.letter');
+
+        emptyBoxes.forEach(letter => {
+            let letterHidden = letter.classList.contains('hide');
+            if (letterHidden) {
+                win = false;
+            } else {
+                return win;
+            }
+
+        });
+        
+    };
+
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife(){
+        this.missed += 1;
+        const livesLeft = document.querySelectorAll('.tries');
+
+        for (let i = 0; i < livesLeft.length; i++) {
+            const heartImage = livesLeft[i].firstChild;
+            if(livesLeft.src.includes('images/liveHeart.png')){
+                 return livesLeft.src = 'images/lostHeart.png';   
+            }
+            
+            if(this.missed === 5){
+                this.gameOver();
+            }
+        }
+    }; 
+
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon){
+        hideOverlay.style.display = '';
+        if (this.missed === 5){
+            overlay.append("Sorry, you lost");
+            overlay.classList.remove('start');
+            overlay.classList.add('lose')
+        } else {
+            overlay.append("Yay, you won!");
+            overlay.classList.remove('start');
+            overlay.classList.add('win');
+        }
+    };
     
-    
-};
-
-/**
-* Displays game over message
-* @param {boolean} gameWon - Whether or not the user won the game
-*/
-gameOver(gameWon){
-    hideOverlay.style.display = '';
-    if (this.missed === 5){
-        overlay.append("Sorry, you lost");
-        overlay.classList.remove('start');
-        overlay.classList.add('lose')
-    } else {
-        overlay.append("Yay, you won!");
-        overlay.classList.remove('start');
-        overlay.classList.add('win');
-    }
-};
-
 }
