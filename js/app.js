@@ -16,5 +16,5 @@ btn_reset.addEventListener("click", e => {
 */
 const qwerty = document.getElementById('qwerty');
 qwerty.addEventListener("click", e => {
-    game.handleInteractions(e.target);
+    game.handleInteraction(e.target);
 })
