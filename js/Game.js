@@ -32,7 +32,7 @@ getRandomPhrase(phrases) {
     btn_reset.disabled =true;
     if (this.activePhrase.checkLetter(btn_reset.innerHTML)) {
         btn_reset.classList.add('.chosen');
-        this.showMatchedLetter();
+        this.activePhrase.showMatchedLetter(); 
     } else {
         btn_reset.classList.add('.wrong');
         this.removeLife();
@@ -61,15 +61,14 @@ startGame() {
     */
     checkForWin(){
         let hide = document.querySelectorAll('.hide');
-        let win = true;
         let emptyBoxes = document.querySelectorAll('.letter');
 
         emptyBoxes.forEach(letter => {
             let letterHidden = letter.classList.contains('hide');
-            if (letterHidden) {
-                win = false;
+            if (letterHidden.length === 0) {
+                return true;
             } 
-                return win;
+                return false;
 
         });
         
@@ -82,14 +81,14 @@ startGame() {
     */
     removeLife(){
         this.missed += 1;
-        const livesLeft = document.querySelectorAll('.tries');
+        const livesLeft = document.querySelectorAll(".tries");
         const liveHeartImg = document.createElement('liveHeartImg');
         liveHeartImg.src = "image/liveheart.png";
 
         for (let i = 0; i < livesLeft.length; i++) {
             const heartImage = livesLeft[i].firstChild;
-            if(livesLeft.includes(liveHeartImg.src)){
-                 return livesLeft.src = 'image/lostHeart.png';   
+            if(heartImage.src.includes(liveHeartImg.src)){
+                 return heartImage.src = 'image/lostHeart.png';   
             }
             
             if(this.missed === 5){

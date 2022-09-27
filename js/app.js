@@ -14,7 +14,10 @@ btn_reset.addEventListener("click", e => {
 * Handles onscreen keyboard button clicks
 * @param (HTMLButtonElement) button - The clicked button element
 */
-const qwerty = document.getElementById('qwerty');
-qwerty.addEventListener("click", e => {
-    game.handleInteraction(e.target);
-})
+const keyBtn = document.getElementById('qwerty');
+keyBtn.addEventListener("click", e => {
+    if (e.target === document.querySelectorAll(".key")){
+    game.handleInteraction();
+    }
+});
+
