@@ -34,7 +34,7 @@ checkLetter(letter){
 
 showMatchedLetter(letter){
     const matchLetter = document.querySelectorAll('.letter');
-    if (this.checkLetter(letter)) {
+    
         for (let i = 0; i < matchLetter.length; i++){
             if(matchLetter[i].classList.contains(letter)){
             matchLetter[i].classList.remove('hide');
@@ -42,6 +42,4 @@ showMatchedLetter(letter){
             }
         }
     }
- }
-
 };

@@ -31,10 +31,10 @@ getRandomPhrase(phrases) {
  handleInteraction(btn_reset){
     btn_reset.disabled =true;
     if (this.activePhrase.checkLetter(btn_reset.innerHTML)) {
-        btn_reset.classList.add('.chosen');
+        btn_reset.classList.add('chosen');
         this.activePhrase.showMatchedLetter(); 
     } else {
-        btn_reset.classList.add('.wrong');
+        btn_reset.classList.add('wrong');
         this.removeLife();
     } 
     if(this.checkForWin()){
@@ -60,17 +60,14 @@ startGame() {
     won
     */
     checkForWin(){
-        let hide = document.querySelectorAll('.hide');
-        let emptyBoxes = document.querySelectorAll('.letter');
-
-        emptyBoxes.forEach(letter => {
-            let letterHidden = letter.classList.contains('hide');
-            if (letterHidden.length === 0) {
+        let hide = document.getElementsByClassName('hide');
+            if (hide.length === 0) {
                 return true;
-            } 
+            } else {
                 return false;
-        });
-    };
+            }
+        };
+
 
     /**
     * Increases the value of the missed property
@@ -80,12 +77,10 @@ startGame() {
     removeLife(){
         this.missed += 1;
         const livesLeft = document.querySelectorAll(".tries");
-        const liveHeartImg = document.createElement('liveHeartImg');
-        liveHeartImg.src = 'images/liveheart.png';
 
         for (let i = 0; i < livesLeft.length; i++) {
             const heartImage = livesLeft[i].firstChild;
-            if(heartImage.src.includes(liveHeartImg.src)){
+            if(heartImage.src.includes('images/liveHeart.png')){
                  return heartImage.src = 'images/lostHeart.png';   
             }
             
@@ -101,17 +96,19 @@ startGame() {
     */
     gameOver(gameWon){
         overlay.style.display = 'flex';
+        let overlayStart = document.querySelector('.start');
         let gameOverMessage  = document.getElementById("game-over-message")
 
-        if (this.missed === 5){
-            overlay.className = 'lose';
-            gameOverMessage.innerHTML = `Sorry, please try again.`
-        } else {
-            overlay.className = 'win';
+        if (gameWon){
+            overlayStart.className = 'win';
             gameOverMessage.innerHTML = `Yay, you won!`
+        } else if (!gameWon) {
+            overlayStart.className = 'lose';
+            gameOverMessage.innerHTML = `Sorry, please try again`
         }
-    };
-    
+
+    }
+
     //Removes all the 'li' elements from the Phrase 'ul' element
     //Enables all onscreen keyboard buttons
     //Resets the heart images (player's lives) in the scoreboard 
@@ -123,9 +120,10 @@ startGame() {
         removeLi.innerHTML = '';
 
         for (let i = 0; i < key.length; i++) {
-         key[i].remove('chose');
-         key[i].remove('wrong')   
-         key[i].add('key');
+         key[i].classList.remove('chose');
+         key[i].classList.remove('wrong');
+         key[i].classList.remove('show');   
+         key[i].classList.add('key');
          key[i].disabled = false;   
         }
 
