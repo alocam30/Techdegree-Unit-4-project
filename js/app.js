@@ -16,8 +16,8 @@ btn_reset.addEventListener("click", e => {
 */
 const keyBtn = document.getElementById('qwerty');
 keyBtn.addEventListener("click", e => {
-    if (e.target === document.querySelectorAll(".key")){
-    game.handleInteraction();
+    if (e.target.className === 'key'){
+    game.handleInteraction(e.target);
     }
 });
 
