@@ -35,15 +35,15 @@ checkLetter(letter){
 showMatchedLetter(letter){
     const matchLetter = document.querySelectorAll('.letter');
     if (this.checkLetter(letter)) {
-        for (let i = 0; i < letter.length; i++){
+        for (let i = 0; i < matchLetter.length; i++){
             if(matchLetter[i].classList.contains(letter)){
-            machLetter[i].classList.remove('hide');
+            matchLetter[i].classList.remove('hide');
             matchLetter[i].classList.add('show')
             }
         }
     }
  }
 
- 
+
 
 };

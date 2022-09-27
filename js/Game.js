@@ -6,11 +6,11 @@ class Game {
     constructor(missed, phrases, activePhrase) {
         this.missed = 0;
         this.phrases = [
-           new Phrase('Solar Power'),
-           new Phrase('Royals'),
-           new Phrase('Supercut'),
-           new Phrase('Greenlight'),
-           new Phrase('Perfect places')
+           new Phrase('solar power'),
+           new Phrase('royals'),
+           new Phrase('supercut'),
+           new Phrase('greenlight'),
+           new Phrase('perfect places')
         ];
         this.activePhrase = null;
 
@@ -24,7 +24,24 @@ getRandomPhrase(phrases) {
     const randomPhrase = Math.floor(Math.random()*this.phrases.length);
     return this.phrases[randomPhrase]; 
 };
-    
+
+/**
+* Controls the game logic by checking to see if the letter clicked matches a letter in the phrase
+*/
+ handleInteraction(btn_reset){
+    btn_reset.disabled =true;
+    if (this.activePhrase.checkLetter(btn_reset.innerHTML)) {
+        btn_reset.classList.add('.chosen');
+        this.showMatchedLetter();
+    } else {
+        btn_reset.classList.add('.wrong');
+        this.removeLife();
+    } 
+    if(this.checkForWin()){
+        this.gameOver(true);
+    };
+ };
+
 /**
 * Begins game by selecting a random phrase and displaying it to user
 */
@@ -51,9 +68,8 @@ startGame() {
             let letterHidden = letter.classList.contains('hide');
             if (letterHidden) {
                 win = false;
-            } else {
+            } 
                 return win;
-            }
 
         });
         
@@ -67,11 +83,13 @@ startGame() {
     removeLife(){
         this.missed += 1;
         const livesLeft = document.querySelectorAll('.tries');
+        const liveHeartImg = document.createElement('liveHeartImg');
+        liveHeartImg.src = "image/liveheart.png";
 
         for (let i = 0; i < livesLeft.length; i++) {
             const heartImage = livesLeft[i].firstChild;
-            if(livesLeft.src.includes('images/liveHeart.png')){
-                 return livesLeft.src = 'images/lostHeart.png';   
+            if(livesLeft.includes(liveHeartImg.src)){
+                 return livesLeft.src = 'image/lostHeart.png';   
             }
             
             if(this.missed === 5){
@@ -97,4 +115,6 @@ startGame() {
         }
     };
     
+    
+
 }
