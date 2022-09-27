@@ -44,6 +44,4 @@ showMatchedLetter(letter){
     }
  }
 
-
-
 };
