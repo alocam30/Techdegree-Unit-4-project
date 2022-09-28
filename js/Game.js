@@ -32,7 +32,7 @@ getRandomPhrase(phrases) {
     btn_reset.disabled =true;
     if (this.activePhrase.checkLetter(btn_reset.innerHTML)) {
         btn_reset.classList.add('chosen');
-        this.activePhrase.showMatchedLetter(); 
+        this.activePhrase.showMatchedLetter(btn_reset.innerHTML); 
     } else {
         btn_reset.classList.add('wrong');
         this.removeLife();
@@ -100,11 +100,11 @@ startGame() {
         let gameOverMessage  = document.getElementById("game-over-message")
 
         if (gameWon){
-            overlayStart.className = 'win';
-            gameOverMessage.innerHTML = `Yay, you won!`
+            overlayStart.classList.add('win');
+            gameOverMessage.innerHTML = `Yay, you won!`;
         } else if (!gameWon) {
-            overlayStart.className = 'lose';
-            gameOverMessage.innerHTML = `Sorry, please try again`
+            overlayStart.classList.add('lose');
+            gameOverMessage.innerHTML = `Sorry, please try again`;
         }
 
     }
@@ -114,25 +114,23 @@ startGame() {
     //Resets the heart images (player's lives) in the scoreboard 
 
     resetGame(){
-        let removeLi = document.querySelector('ul');
+        let phraseLi = document.querySelectorAll("#phrase li");
+        for (let i = 0; i < phraseLi.length; i++){
+            phraseLi[i].remove();
+        };
+
         let key = document.querySelectorAll('.key');
-
-        removeLi.innerHTML = '';
-
         for (let i = 0; i < key.length; i++) {
-         key[i].classList.remove('chose');
-         key[i].classList.remove('wrong');
-         key[i].classList.remove('show');   
-         key[i].classList.add('key');
+         key[i].className = 'key';
+         key[i].classList.remove('chosen');
+         key[i].classList.remove('wrong');  
          key[i].disabled = false;   
         }
-
-    
+        
         for (let i = 0; i < livesLeft.length; i++) {
-            heartImage.src = "images/liveheart.png";
+            livesLeft[i].setAttribute("src", "images/liveheart.png");
         }
 
-        this.startGame();
     };
 
 }
