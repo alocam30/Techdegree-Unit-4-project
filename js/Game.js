@@ -74,10 +74,10 @@ startGame() {
     * Removes a life from the scoreboard
     * Checks if player has remaining lives and ends game if player is out
     */
+
     removeLife(){
         this.missed += 1;
-        const livesLeft = document.querySelectorAll(".tries");
-
+        let livesLeft = document.querySelectorAll(".tries");
         for (let i = 0; i < livesLeft.length; i++) {
             const heartImage = livesLeft[i].firstChild;
             if(heartImage.src.includes('images/liveHeart.png')){
@@ -126,7 +126,8 @@ startGame() {
             key.disabled = false;
         }); 
 
-        livesLeft.forEach(life => {
+        const lives = document.querySelectorAll('li.tries');
+        lives.forEach(life => {
             life.firstElementChild.src = 'images/liveHeart.png';
 
         })
