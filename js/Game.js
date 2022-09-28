@@ -114,15 +114,12 @@ startGame() {
     //Resets the heart images (player's lives) in the scoreboard 
 
     resetGame(){
-        let hideLetter = document.querySelectorAll('.hide letter');
-        let hideSpace  = document.querySelectorAll('.hide space');
-        hideLetter.innerHTML = '';
-        hideSpace.innerHTML = ''; 
+        ul.childElement.innerHTML = ''; 
         
+        this.missed = 0;
 
-        let key = document.querySelectorAll('.key');
+        let key = document.querySelectorAll('button.key');
         for (let i = 0; i < key.length; i++) {
-         key[i].className = 'key';
          key[i].classList.remove('chosen');
          key[i].classList.remove('wrong');  
          key[i].disabled = false;   
