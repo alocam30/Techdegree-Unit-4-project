@@ -8,6 +8,12 @@ let btn_reset = document.getElementById("btn__reset");
 btn_reset.addEventListener("click", e => {
     game = new Game();
     game.startGame();
+
+    if (game) {
+       game.resetGame();
+    } else {
+        game = new Game();
+    }
 });
 
 /**

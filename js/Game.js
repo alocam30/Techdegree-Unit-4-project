@@ -113,22 +113,23 @@ startGame() {
     //Enables all onscreen keyboard buttons
     //Resets the heart images (player's lives) in the scoreboard 
 
-    resetGame(){
+    resetGame(e){
         ul.childElement.innerHTML = ''; 
         
         this.missed = 0;
 
-        let key = document.querySelectorAll('button.key');
-        for (let i = 0; i < key.length; i++) {
-         key[i].classList.remove('chosen');
-         key[i].classList.remove('wrong');  
-         key[i].disabled = false;   
-        }
-        
-        for (let i = 0; i < livesLeft.length; i++) {
-            livesLeft[i].setAttribute("src", "images/liveheart.png");
-        }
 
-    };
+        let keys = document.querySelectorAll('.key');
+        keys.forEach(key => {
+            key.classList.remove('chosen' , 'wrong');
+            key.disabled = false;
+        }); 
 
-}
+        livesLeft.forEach(life => {
+            life.firstElementChild.src = 'images/liveHeart.png';
+
+        })
+
+      };
+    
+    }
