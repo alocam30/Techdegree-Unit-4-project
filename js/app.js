@@ -10,10 +10,11 @@ btn_reset.addEventListener("click", e => {
     game.startGame();
 
     if (game) {
-       game.resetGame();
-    } else {
         game = new Game();
+    } else {
+        game.resetGame();
     }
+    game.startGame();
 });
 
 /**

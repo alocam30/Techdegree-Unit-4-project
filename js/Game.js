@@ -114,7 +114,8 @@ startGame() {
     //Resets the heart images (player's lives) in the scoreboard 
 
     resetGame(e){
-        ul.childElement.innerHTML = ''; 
+        const phraseLi = document.querySelector('#phrase ul')
+        phraseLi.innerHTML = '';
         
         this.missed = 0;
 
