@@ -6,13 +6,13 @@
 let game;
 let btn_reset = document.getElementById("btn__reset");
 btn_reset.addEventListener("click", e => {
-    game = new Game();
-    game.startGame();
-
+    // game = new Game();
+    // game.startGame();
+    // game.resetGame();
     if (game) {
-        game = new Game();
-    } else {
         game.resetGame();
+    } else {
+        game = new Game();
     }
     game.startGame();
 });
